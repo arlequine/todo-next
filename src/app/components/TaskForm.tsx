@@ -16,21 +16,18 @@ const TaskForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row gap-2 mb-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex items-center mb-4">
       <input
         type="text"
         {...register('title', { required: 'El título es obligatorio' })}
-        className={`border p-2 flex-grow ${errors.title ? 'border-red-500' : ''} text-black`}
+        className={`border-none border-b-2 border-b-gray-400 bg-transparent focus:outline-none focus:border-b-2 p-2 flex-grow ${errors.title ? 'border-red-500' : ''} text-white`}
         placeholder="Agregar nueva tarea"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSubmit(onSubmit)();
+          }
+        }}
       />
-      <button 
-        type="submit" 
-        className={`bg-blue-500 text-white p-2 ${!watch('title')?.trim() ? 'bg-gray-500' : ''}`} 
-        disabled={!watch('title')?.trim()}
-      >
-        Agregar
-      </button>
-      {errors.title && <span className="text-red-500">{errors.title.message}</span>}
     </form>
   );
 };
