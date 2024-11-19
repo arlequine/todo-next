@@ -3,19 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #3A3D57; 
+  --foreground: #F0F0F0; 
+  --button-bg: #53577D;
+  --button-hover-bg: #614F7D; 
+  --error-color: #FF4C4C;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+h1, h2 {
+  margin-bottom: 1rem;
+}
+
+input {
+  border: 2px solid #374E57;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #374E57;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+li span {
+  flex-grow: 1;
+}
+
+button.delete {
+  background-color: var(--error-color);
+}
+
+button.delete:hover {
+  background-color: #4F6F7D;
 }
