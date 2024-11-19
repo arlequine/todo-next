@@ -35,25 +35,36 @@ const TaskList: React.FC = () => {
               <td className="border border-gray-300 p-2">{index + 1}</td>
               <td className="border border-gray-300 p-2">
                 {editingTaskId === task.id ? (
-                  <input 
-                    type="text" 
-                    value={newTitle} 
-                    onChange={(e) => setNewTitle(e.target.value)} 
-                    className="border p-1 w-full"
-                  />
+                  <>
+                    <div className="flex flex-col md:flex-row md:items-center">
+                      <input 
+                        type="text" 
+                        value={newTitle} 
+                        onChange={(e) => setNewTitle(e.target.value)} 
+                        className="border p-1 w-full md:w-1/2 ml-2"
+                      />
+                      <div className="flex items-center">
+                        <label className="relative inline-flex items-center cursor-pointer">
+                          <input 
+                            type="checkbox" 
+                            checked={task.completed} 
+                            onChange={() => toggleTaskCompletion(task.id)} 
+                            className="sr-only peer"
+                          />
+                          <div className={`w-11 h-6 rounded-full transition-colors ${task.completed ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                          <div className="absolute w-5 h-5 bg-white rounded-full shadow-md left-1 top-0.5 transition-transform peer-checked:translate-x-full"></div>
+                        </label>
+                        <label className="text-sm md:w-1/2">Completar</label>
+                      </div>
+                    </div>
+                  </>
                 ) : (
-                  <span className={task.completed ? 'line-through' : ''}>
+                  <span className={task.completed ? 'line-through' : ''} title={task.completed ? 'Completada' : 'No completada'}>
                     {task.title}
                   </span>
                 )}
               </td>
               <td className="border border-gray-300 p-2">
-                <button 
-                  onClick={() => toggleTaskCompletion(task.id)} 
-                  className={`p-1 mx-1 ${task.completed ? 'bg-green-500' : 'bg-gray-500'} text-white`}
-                >
-                  {task.completed ? '✔️' : '❌'}
-                </button>
                 {editingTaskId === task.id ? (
                   <button 
                     onClick={() => handleEdit(task.id, task.title)} 
