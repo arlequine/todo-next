@@ -6,7 +6,7 @@ import { FormData } from '../utils/types';
 
 const TaskForm: React.FC = () => {
   const { addTask } = useTaskContext();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     if (data.title.trim()) {
@@ -20,10 +20,14 @@ const TaskForm: React.FC = () => {
       <input
         type="text"
         {...register('title', { required: 'El título es obligatorio' })}
-        className={`border p-2 flex-grow ${errors.title ? 'border-red-500' : ''}`}
+        className={`border p-2 flex-grow ${errors.title ? 'border-red-500' : ''} text-black`}
         placeholder="Agregar nueva tarea"
       />
-      <button type="submit" className="bg-blue-500 text-white p-2">
+      <button 
+        type="submit" 
+        className={`bg-blue-500 text-white p-2 ${!watch('title')?.trim() ? 'bg-gray-500' : ''}`} 
+        disabled={!watch('title')?.trim()}
+      >
         Agregar
       </button>
       {errors.title && <span className="text-red-500">{errors.title.message}</span>}
