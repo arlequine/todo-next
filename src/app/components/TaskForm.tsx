@@ -6,7 +6,7 @@ import { FormData } from '../utils/types';
 
 const TaskForm: React.FC = () => {
   const { addTask } = useTaskContext();
-  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
     if (data.title.trim()) {
