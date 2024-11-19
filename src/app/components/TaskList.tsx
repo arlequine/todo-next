@@ -19,7 +19,7 @@ const TaskList: React.FC = () => {
               type="checkbox"
               checked={task.completed}
               onChange={() => toggleTaskCompletion(task.id)}
-              className="mr-2 w-auto"
+              className="form-checkbox h-5 w-5 accent-green-600 border-2 border-gray-300 rounded-md"
             />
             <input
               type="text"
